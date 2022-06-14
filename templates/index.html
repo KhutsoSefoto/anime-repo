@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Anime Corner</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    </head>
+    <body>
+        <img src="">
+        <br>
+        <form action="/results/" method="post">
+            {% for message in get_flashed_messages()%}
+                <p>{{message}}</p>
+            {% endfor %}
+            <input type="text" placeholder="Enter anime type[TV / Movie / OVA / Special]" name="type_input">
+            <input type="text" placeholder="Enter anime genre" name="mood_input">
+            <br>
+            <input type="submit" value="TYPE" id="type">
+        </form>
+    </body>
+</html>

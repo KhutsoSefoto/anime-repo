@@ -2,7 +2,6 @@ import secrets
 from typing import Match
 import pandas as pd
 import requests
-import json
 import pprint
 import time
 
@@ -16,11 +15,6 @@ for i in range(0, 76):
 col = ['GENRES']
 df = pd.DataFrame(genre_list, columns=col)
 pd.set_option('display.max_rows', None)
-
-print('Welcome to anime recommender!')
-type = input('Anime type: [TV / Movie / OVA / Special]? ').lower()
-print(df)
-mood = input('Genre? ').lower()
 
 
 def find_anime(type, mood):
@@ -82,10 +76,3 @@ def find_anime(type, mood):
         print('No match!')
 
     return match
-
-
-timeout = 60
-timeout_start = time.time()
-while(time.time() < timeout_start + timeout):
-    if find_anime(type, mood) == match:
-        break
