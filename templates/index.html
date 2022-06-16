@@ -1,21 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Anime Corner</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>My Anime Corner</title>
         <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
     </head>
     <body>
-        <img src="">
-        <br>
-        <form action="/results/" method="post">
-            {% for message in get_flashed_messages()%}
-                <p>{{message}}</p>
-            {% endfor %}
-            <input type="text" placeholder="Enter anime type[TV / Movie / OVA / Special]" name="type_input">
-            <input type="text" placeholder="Enter anime genre" name="mood_input">
+        <div class="container">
+            <div class="top">
+                <div class="logo-wrapper">
+                <img src="" />
+                </div>
+            </div>
             <br>
-            <input type="submit" value="TYPE" id="type">
-        </form>
+            <form action="/results/" method="post">
+                {% for message in get_flashed_messages()%}
+                    <p>{{message}}</p>
+                {% endfor %}
+                <input type="text" placeholder="Enter anime type[TV / Movie / OVA / Special]" name="type_input">
+                <input type="text" placeholder="Enter anime genre" name="mood_input">
+                <br>
+                <input type="submit" value="SUBMIT" id="type">
+            </form>
+        </div>
+        <script>
+            // Example starter JavaScript for disabling form submissions if there are invalid fields
+            (() => {
+            'use strict'
+        
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            const forms = document.querySelectorAll('.needs-validation')
+        
+            // Loop over them and prevent submission
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+        
+                form.classList.add('was-validated')
+                }, false)
+            })
+            })()
+        </script>
     </body>
 </html>

@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, flash
+import pandas as pd
 import main
 import time
+import csv
 
 app = Flask(__name__)
 app.secret_key = "mango_645"
@@ -8,7 +10,7 @@ app.secret_key = "mango_645"
 
 @app.route("/hello/")
 def index():
-    flash("WELCOME TO ANIME CORNER!")
+    flash("WELCOME TO MY ANIME CORNER!")
     return render_template("index.html")
 
 
@@ -35,7 +37,13 @@ def results():
     while(time.time() < timeout_start + timeout):
         if main.find_anime(type, mood) == match:
             break
-    return render_template("index.html")
+    file = open("results.csv", "r")
+    reader = csv.reader(file)
+    anime_info = list(reader)
+    anime_img = anime_info[0]
+    file.close()
+
+    return render_template("results.html", anime_info=anime_info, anime_img=anime_img)
 
 
 if __name__ == '__main__':

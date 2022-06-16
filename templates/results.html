@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>My Anime Corner</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    </head>
+    <body>
+        <div class="container">
+            <div class="top">
+                <div class="logo-wrapper">
+                <img src="" />
+                </div>
+            </div>
+            <br>
+            <form action="/results/" method="post">
+                {% for message in get_flashed_messages()%}
+                    <p>{{message}}</p>
+                {% endfor %}
+            </form>
+            <div class="info">
+                <img src="{{anime_img[0]}}"/>
+                <div class="info-text">
+                    {% for info in anime_info %}
+                        {% for i in info %}
+                            {% if i in anime_img %}
+                                <tr></tr><br>
+                            {% else %}
+                                <tr>{{i}}</tr><br>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
