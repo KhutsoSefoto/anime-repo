@@ -22,13 +22,13 @@ def find_anime(type, mood):
     match = False
     i = secrets.randbelow(2000)
     response = requests.get(f'https://api.jikan.moe/v4/anime/{i}')
-    pprint.pprint(response.json())
+    # pprint.pprint(response.json())
     try:
         anime_type = str(response.json()['data']['type']).lower()
     except KeyError:
         time.sleep(5)
         response = requests.get(f'https://api.jikan.moe/v4/anime/{1}')
-        pprint.pprint(response.json())
+        # pprint.pprint(response.json())
         anime_type = str(response.json()['data']['type']).lower()
     try:
         anime_genre1 = str(

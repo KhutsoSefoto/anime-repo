@@ -20,13 +20,13 @@
                 {% endfor %}
             </form>
             <div class="info">
-                <img src="{{anime_img[0]}}"/>
+                <div class="info-img">
+                    <img src="{{anime_img[0]}}"/>
+                </div>
                 <div class="info-text">
                     {% for info in anime_info %}
                         {% for i in info %}
-                            {% if i in anime_img %}
-                                <tr></tr><br>
-                            {% else %}
+                            {% if i != anime_img[0]  %}
                                 <tr>{{i}}</tr><br>
                             {% endif %}
                         {% endfor %}

@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request, flash
+from flask import Flask, render_template, request, flash, session
 import pandas as pd
 import main
+from forms import Search
 import time
 import csv
 
@@ -8,29 +9,24 @@ app = Flask(__name__)
 app.secret_key = "mango_645"
 
 
-@app.route("/hello/")
+@app.route('/')
+@app.route("/hello/", methods=["POST", "GET"])
 def index():
-    flash("WELCOME TO MY ANIME CORNER!")
-    return render_template("index.html")
+    form = Search()
+    if form.validate_on_submit():
+        type = str(form.type.data).lower()
+        mood = str(form.mood.data).lower()
+    if form.errors != {}:
+        for err_msg in form.errors.values():
+            flash(err_msg)
+    return render_template("index.html", form=form)
 
 
 @app.route("/results/", methods=["POST", "GET"])
 def results():
     match = True
-    type = str(request.form['type_input']).lower()
-    mood = str(request.form['mood_input']).lower()
-
-    if request.method == 'POST':
-        types = request.form['type_input']
-        moods = request.form['mood_input']
-        if not types:
-            flash("Anime type is required!")
-        elif not moods:
-            flash("Anime genre is required!")
-        elif not types and not moods:
-            flash("Anime type & genre are required!")
-        else:
-            pass
+    type = str(request.form['type']).lower()
+    mood = str(request.form['mood']).lower()
 
     timeout = 60
     timeout_start = time.time()

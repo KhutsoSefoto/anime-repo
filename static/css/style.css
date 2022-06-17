@@ -2,6 +2,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Open Sans Condensed', sans-serif;
+    background-color: #212121;
 }
 .container {
     display: grid;
@@ -28,7 +29,7 @@ p{
   }
   
 
-input{
+.input{
     width:250px;
     height: 50px;
     margin: 20px;
@@ -50,19 +51,30 @@ form{
     justify-content: center;
     color:#212029
   }
-input:hover {
+.input:hover {
     background-color: white;
     color: #000;
 }
   
 
-#type {
+.btn {
+    width:200px;
+    height: 50px;
+    margin: 20px;
+    border: none;
+    border-radius: 20px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    text-align: center;
+    font-size: 1.1em;
     background-color: black;
+    text-decoration: none;
     color: white;
-    width: 200px;
+    padding: 5px 40px;
+    border: 1px solid transparent;
+    transition: 0.6s ease;
 }
 
-#type:hover {
+.btn:hover {
     background-color: white;
     color: #000;
     cursor: pointer;
@@ -76,11 +88,17 @@ input:hover {
     margin: 50px 100px;
     float: left;
 }
-.info img{
+.info-img img{
     width: 80%;
+    padding: 50px;
 }
 .info-text {
     padding: 50px;
     font-size: 25px;
-    color: #212029;
+    color: white;
+}
+
+.info-text > tr:first-of-type {
+    font-size: 30px;
+    font-weight: bold;
 }

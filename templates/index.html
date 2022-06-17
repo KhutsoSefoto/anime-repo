@@ -8,20 +8,27 @@
     </head>
     <body>
         <div class="container">
+            {% for message in get_flashed_messages()%}
+                <div class="alert">
+                    <button type="button" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{message}}
+                </div>
+                
+            {% endfor %}
             <div class="top">
                 <div class="logo-wrapper">
                 <img src="" />
                 </div>
             </div>
             <br>
-            <form action="/results/" method="post">
-                {% for message in get_flashed_messages()%}
-                    <p>{{message}}</p>
-                {% endfor %}
-                <input type="text" placeholder="Enter anime type[TV / Movie / OVA / Special]" name="type_input">
-                <input type="text" placeholder="Enter anime genre" name="mood_input">
+            <form action="/results/" method="post" class="form-search">
+                {{ form.hidden_tag() }}
+                {{ form.type(class="input", type="text", placeholder="Enter anime type[TV / Movie / OVA / Special]") }}
+                {{ form.mood(class="input", type="text", placeholder="Enter anime genre") }}
                 <br>
-                <input type="submit" value="SUBMIT" id="type">
+                {{ form.submit(class="btn", type="submit") }}
             </form>
         </div>
         <script>
